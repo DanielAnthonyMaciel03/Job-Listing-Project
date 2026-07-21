@@ -6,6 +6,12 @@ The pipeline runs on a daily schedule (every morning at 8:00 AM PST), detects an
 
 This README walks through my thought process behind the key decisions I made throughout this project, along with several implementations that reflect real-world data engineering problem-solving.
 
+***
 
 # Data pipeline architecture
 ![Pipeline Architecture](screenshots/pipeline_architecture.PNG)
+
+- **REST API:** [USAJOBS](https://developer.usajobs.gov) was used to source new job listings for extraction.
+- **Extract/Transform/Load:** Python, using the `psycopg2` library, handled extracting, cleaning, and loading the data into the database.
+- **Storage:** PostgreSQL was used for data storage, structured as a star schema.
+- **Orchestration:** Apache Airflow (running via Docker) automates the entire pipeline end-to-end, including scheduling and retry logic.
