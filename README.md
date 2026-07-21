@@ -78,10 +78,10 @@ This README walks through my thought process behind the key decisions I made thr
 
 ### Snippet of postgreSQL data
 
-![dimension table job category](dimTableJobCategory.PNG)
-![dimension table location](dimTableLocation.PNG)
-![dimension table organization](dimTableOrganization.PNG)
-![fact table listings](factTableListings.PNG)
+![dimension table job category](screenshots/dimTableJobCategory.PNG)
+![dimension table location](screenshots/dimTableLocation.PNG)
+![dimension table organization](screenshots/dimTableOrganization.PNG)
+![fact table listings](screenshots/factTableListings.PNG)
 
 ## Airflow Orchestration
 
