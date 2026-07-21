@@ -6,7 +6,7 @@ The pipeline runs on a daily schedule (every morning at 8:00 AM PST), detects an
 
 This README walks through my thought process behind the key decisions I made throughout this project, along with several implementations that reflect real-world data engineering problem-solving.
 
-***
+---
 
 # Data pipeline architecture
 ![Pipeline Architecture](screenshots/pipeline_architecture.PNG)
@@ -15,3 +15,12 @@ This README walks through my thought process behind the key decisions I made thr
 - **Extract/Transform/Load:** Python, using the `psycopg2` library, handled extracting, cleaning, and loading the data into the database.
 - **Storage:** PostgreSQL was used for data storage, structured as a star schema.
 - **Orchestration:** Apache Airflow (running via Docker) automates the entire pipeline end-to-end, including scheduling and retry logic.
+
+---
+
+# Important Folders 
+
+- [`DAG code`](DAG%20code) — This folder contains the single DAG file used by Airflow to orchestrate the entire pipeline.
+- [`finished modular pipeline`](finished%20modular%20pipeline) — Final, modularized pipeline code (extract.py, transform.py, load.py, pipeline.py). pipeline.py was used to test the modular pipeline end-to-end before building the DAG file.
+- [`original test pipeline`](original%20test%20pipeline) — Contains the initial single-file version of the pipeline, kept for reference to show the refactoring progression.
+- [`sql`](sql) — Contains the SQL used to create the tables, following the star schema design.
