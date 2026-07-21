@@ -8,4 +8,4 @@ This README walks through my thought process behind the key decisions I made thr
 
 
 # Data pipeline architecture
-![Pipeline Architecture](screenshots/pipeline_architecture.png)
+![Pipeline Architecture](screenshots/pipeline_architecture.PNG)
