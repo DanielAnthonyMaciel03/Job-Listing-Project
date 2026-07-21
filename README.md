@@ -42,7 +42,7 @@ This README walks through my thought process behind the key decisions I made thr
 | `position_title`  | The original, unmodified job title as listed by the employer |
 | `job_category_id`  | Foreign key referencing the derived job category (Data Analyst / Data Engineer) |
 | `organization_id`  | Foreign key referencing the hiring organization/agency |
-| `location_id` |  | Foreign key referencing the job's posted location |
+| `location_id` | Foreign key referencing the job's posted location |
 | `min_salary` / `max_salary`  | The posted salary range, in USD. May be NULL if the employer didn't provide salary information |
 | `close_date`  | The date the application window for this posting closes |
 | `listing_uri`  | Direct link to the original USAJOBS posting |
