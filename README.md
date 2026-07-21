@@ -33,3 +33,19 @@ This README walks through my thought process behind the key decisions I made thr
 - The diagram above shows the database's star schema design. This approach was chosen because several fields in the raw data were highly repetitive. organization and location repeated across many listings, making them strong candidates for normalization into separate dimension tables.
 
 - A key design decision was adding `job_category` as a derived field, since it wasn't provided directly by the API. The raw `position_title` field couldn't be used for this purpose on its own, since it often included extra metadata beyond just the role type. It included things like seniority level or specialization (e.g., "Senior Data Analyst," "AI/Sports Data Analyst"). Because of this, titles rarely repeated in a clean, consistent way, so a separate `job_category` field was derived by matching keywords in the title. This gives a clean, reliable dimension to query and group by, while the original `position_title` is still preserved in the fact table for reference.
+
+## Data Dictionary
+
+| Column | Table | Description |
+|---|---|---|
+| `listing_id` | fact_table_listings | Unique identifier for the job posting, sourced directly from the USAJOBS API's PositionID |
+| `position_title` | fact_table_listings | The original, unmodified job title as listed by the employer |
+| `job_category_id` | fact_table_listings | Foreign key referencing the derived job category (Data Analyst / Data Engineer) |
+| `organization_id` | fact_table_listings | Foreign key referencing the hiring organization/agency |
+| `location_id` | fact_table_listings | Foreign key referencing the job's posted location |
+| `min_salary` / `max_salary` | fact_table_listings | The posted salary range, in USD. May be NULL if the employer didn't provide salary information |
+| `close_date` | fact_table_listings | The date the application window for this posting closes |
+| `listing_uri` | fact_table_listings | Direct link to the original USAJOBS posting |
+| `organization` | dim_table_organization | The name of the hiring federal agency/organization |
+| `location` | dim_table_location | The posted job location (city, state, or "Multiple Locations") |
+| `job_category` | dim_table_job_category | Derived category based on keyword matching against the job title (e.g., "Data Analyst," "Data Engineer") |
