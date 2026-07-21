@@ -36,16 +36,16 @@ This README walks through my thought process behind the key decisions I made thr
 
 ## Data Dictionary
 
-| Column | Table | Description |
-|---|---|---|
-| `listing_id` | fact_table_listings | Unique identifier for the job posting, sourced directly from the USAJOBS API's PositionID |
-| `position_title` | fact_table_listings | The original, unmodified job title as listed by the employer |
-| `job_category_id` | fact_table_listings | Foreign key referencing the derived job category (Data Analyst / Data Engineer) |
-| `organization_id` | fact_table_listings | Foreign key referencing the hiring organization/agency |
-| `location_id` | fact_table_listings | Foreign key referencing the job's posted location |
-| `min_salary` / `max_salary` | fact_table_listings | The posted salary range, in USD. May be NULL if the employer didn't provide salary information |
-| `close_date` | fact_table_listings | The date the application window for this posting closes |
-| `listing_uri` | fact_table_listings | Direct link to the original USAJOBS posting |
-| `organization` | dim_table_organization | The name of the hiring federal agency/organization |
-| `location` | dim_table_location | The posted job location (city, state, or "Multiple Locations") |
-| `job_category` | dim_table_job_category | Derived category based on keyword matching against the job title (e.g., "Data Analyst," "Data Engineer") |
+| Column | Description |
+|---|---|
+| `listing_id`  | Unique identifier for the job posting, sourced directly from the USAJOBS API's PositionID |
+| `position_title`  | The original, unmodified job title as listed by the employer |
+| `job_category_id`  | Foreign key referencing the derived job category (Data Analyst / Data Engineer) |
+| `organization_id`  | Foreign key referencing the hiring organization/agency |
+| `location_id` |  | Foreign key referencing the job's posted location |
+| `min_salary` / `max_salary`  | The posted salary range, in USD. May be NULL if the employer didn't provide salary information |
+| `close_date`  | The date the application window for this posting closes |
+| `listing_uri`  | Direct link to the original USAJOBS posting |
+| `organization` | The name of the hiring federal agency/organization |
+| `location`  | The posted job location (city, state, or "Multiple Locations") |
+| `job_category` | Derived category based on keyword matching against the job title (e.g., "Data Analyst," "Data Engineer", "Data Scientist") |
