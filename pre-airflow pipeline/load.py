@@ -3,48 +3,6 @@ import logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
 
-import smtplib
-from email.mime.text import MIMEText
-
-import os
-from dotenv import load_dotenv
-load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), ".env"))
-
-
-# this function sends an email to myself 
-# the contents depend on if the pipeline found any new job listings
-def sendEmail(newListings):
-
-    gmailAddress = os.getenv("gmail")
-    gmailPassword = os.getenv("gmailPass")
-
-    if len(newListings) == 0:
-
-        msg = MIMEText(f"No new job listings were posted today.")
-        
-    else:
-        listingsToMail = []
-
-        for listing in newListings:
-            line = f"{listing['position_title']} | {listing['listing_uri']}"
-            listingsToMail.append(line)
-        
-        allNewListingsText = "\n".join(listingsToMail)
-        msg = MIMEText(f"{len(newListings)} new job listings were found today: \n\n {allNewListingsText}")
-        
-    
-    msg["Subject"] = "Job Listings Pipeline: Daily Digest"
-    msg["From"] = gmailAddress
-    msg["To"] = gmailAddress
-
-    with smtplib.SMTP("smtp.gmail.com", 587) as server:
-        server.starttls()
-        server.login(gmailAddress, gmailPassword)
-        server.send_message(msg)
-
-
-
-
 # this helper function checks to find any new listings 
 def checkForNewListings(cur, listings):
     cur.execute("""
@@ -65,8 +23,20 @@ def checkForNewListings(cur, listings):
     logging.info(f"Found {len(newListings)} new listings out of {len(listings)} total")
     
     return newListings
-            
 
+
+# This helper function helps detect any duplicate listings and remove them if needed to prevent errors when inserting into postgrese
+def checkForDupeListings(listings):
+    seen_ids = set()
+    uniqueListings = []
+    for listing in listings:
+        if listing["listing_id"] not in seen_ids:
+            seen_ids.add(listing["listing_id"])
+            uniqueListings.append(listing)
+    
+    dupes = len(listings) - len(uniqueListings)
+    logging.info(f"Duplicate listings detected: {dupes}")
+    return uniqueListings
 
 # This function is used to load any new listings into the data base
 def loadToDataBase(listings):
@@ -74,17 +44,16 @@ def loadToDataBase(listings):
         logging.info("Attempting to open database connection and create cursor")
 
         conn = psycopg2.connect(
-            host=os.getenver("hostName"),
-            database=os.getenv("databaseName"), 
-            user=os.getenv("userName"), 
-            password=os.getenv("passwordPostgreSQL")
+            host="...",
+            database="...", 
+            user="...", 
+            password="..."
         )
 
         cur = conn.cursor()
     except Exception as error:
         logging.error(f"Failed to open database connection or create cursor: {error}")
         raise
-    
 
 
     logging.info("Succesfully created database connection and created cursor")
@@ -92,12 +61,17 @@ def loadToDataBase(listings):
 
     # if there are no new listings for the day, i can avoid querying the database multiple times
     newListings = checkForNewListings(cur, listings)
-
-    # ill send my self the email digest if any jobs were found
-    sendEmail(newListings)
+    newListings = checkForDupeListings(newListings)
 
     if newListings:
         logging.info("Inserting new listings into the database") 
+
+        # Each dimension table load checks for existing entries before inserting,
+        # using LOWER() to catch case-variant duplicates (e.g. "FDA" vs "fda").
+        # For the fact table, listing_id uniqueness is handled upstream — by this point,
+        # newListings has already been filtered by checkForNewListings() (removes listings
+        # already in the database) and checkForDupeListings() (removes duplicate listing_ids
+        # within this batch), so no additional check is needed before inserting.
 
         # fill dim_table_organization
         for listing in newListings:
