@@ -88,3 +88,10 @@ This README walks through my thought process behind the key decisions I made thr
 - The example of a pipelines run logging process can be found in [`loggingExample`](screenshots/loggingExample)
 ### Airflow run
 ![Airflow Complete Run](screenshots/airflowCompleteRun.PNG)
+
+## Pipeline Limitations Summary
+
+- XCom is used to hand off data between tasks. In a real production environment with larger datasets, tasks would ideally read from and write to a shared location (such as a staging table) to increase efficiency, since XCom isn't designed to handle large payloads.
+- The pipeline can only run automatically (every day at 8:00 AM PST) if my local machine and Docker are left running, or if the pipeline is deployed to a cloud service provider for always-on availability.
+- This project uses ETL rather than ELT. Modern data engineering practice often favors extracting data, loading it into a staging table first, and then transforming it using tools like dbt. For this project, I chose to demonstrate transforming the data before loading it, which is a simpler and more appropriate approach at this scale.
+- The pipeline currently has no automated unit tests. Validation relies on manually observing task failures and reviewing Airflow's logs.
