@@ -75,13 +75,7 @@ This README walks through my thought process behind the key decisions I made thr
 - Loading was handled with the `psycopg2` library, which provides native PostgreSQL support within Python, allowing queries, inserts, and deletions to run directly from the pipeline script.
 - To reduce overhead and avoid unnecessary work, the pipeline includes a check for new listings, ensuring that data already present in the database is never reprocessed or re-queried unnecessarily.
 - Duplicate listings are checked at two levels: within the extracted list of dictionaries itself, and against what already exists in the database, before any insertion takes place. This was necessary because the broad market extraction pulls listings across many overlapping job category codes, meaning the same job posting can occasionally be captured more than once within a single run.
-
-### Snippet of postgreSQL data
-
-![dimension table job category](screenshots/dimTableJobCategory.PNG)
-![dimension table location](screenshots/dimTableLocation.PNG)
-![dimension table organization](screenshots/dimTableOrganization.PNG)
-![fact table listings](screenshots/factTableListings.PNG)
+- screenshots of the loaded PostgreSQL data can be found in [`loadedPostgresData`](screenshots/loadedPostgresData).
 
 ## Airflow Orchestration
 
@@ -91,7 +85,6 @@ This README walks through my thought process behind the key decisions I made thr
 - Note: since my dataset is relatively small (currently around 13,000 listings), I made the deliberate choice to hand off data directly between tasks using XCom, rather than writing to and reading from a shared storage location. I understand that in a typical production workflow with much larger datasets, this approach would introduce significant overhead and slow performance, since XComs aren't designed to handle large payloads efficiently. In that scenario, the standard practice is for each task to write its output to a shared location (such as a staging table), with the next task reading from that same location.
 - I also implemented retry logic, so tasks automatically retry on transient failures (such as a temporary API timeout) before being marked as failed.
 - Since Airflow captures and stores logs from any task automatically, I made sure to implement logging throughout my scripts to catch exactly where potential issues might arise, such as failed API calls, database connection problems, or data insertion errors. This means that when a task runs, whether successfully or not, Airflow's UI shows a clear, timestamped record of what happened at each step, rather than just a pass/fail status with no context.
-
-### Airflow run and local run
+- The example of the logging process can be found in [`screenshots`](screenshots/LocalTest.PNG)
+### Airflow run
 ![Airflow Complete Run](screenshots/airflowCompleteRun.PNG)
-![Local Test Run](screenshots/localTest.PNG)
