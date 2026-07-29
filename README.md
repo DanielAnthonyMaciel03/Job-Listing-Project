@@ -127,29 +127,39 @@ better pursued in the private sector.
 
 I chose to analyze the following sub-questions to allow me to provide a thorough recommendation:
 
+---
+
 ## 1. What are the top 3 agencies currently hiring the most?
-- The top 3 agencies in federal government hiring are Veterans Health Administration, Army National 
-Guard Units, and United States Army Installation Management Command.
 
 ![Top 3 Hiring Organizations](screenshots/PowerBI/top_hiring_organizations.PNG)
 
+- The top 3 agencies in federal government hiring are Veterans Health Administration, Army National 
+Guard Units, and United States Army Installation Management Command.
+
+---
+
 ## 2. Within each of those top 3 agencies, what are their top 3 career paths/job categories?
+
+![VHA Top Categories](screenshots/PowerBI/top_3_categories_1.PNG)
+![Army NG Top Categories](screenshots/PowerBI/top_3_categories_2.PNG)
+![Army IMC Top Categories](screenshots/PowerBI/top_3_categories_3.PNG)
+
 - Veterans Health Administration: Medical Officer, Nurse, Social Work
 - Army National Guard Units: Transportation/Mobile Equipment Maintenance, Aircraft Mechanic, Supply 
 Clerical And Technician
 - United States Army Installation Management Command: Education And Training Technician, Recreation 
 Aid And Assistant, Cooking
 
-![VHA Top Categories](screenshots/PowerBI/top_3_categories_1.PNG)
-![Army NG Top Categories](screenshots/PowerBI/top_3_categories_2.PNG)
-![Army IMC Top Categories](screenshots/PowerBI/top_3_categories_3.PNG)
+---
 
-## 3. Are these top career paths reflected in the dataset overall, or does each agency's hiring pattern 
-diverge from the broader trend?
+## 3. Are these top career paths reflected in the dataset overall, or does each agency's hiring pattern diverge from the broader trend?
+
+![Top Categories in Demand Overall](screenshots/PowerBI/top_categories_in_demand_overall.PNG)
+
 - Partially. VHA and Army Installation Management Command's top categories all appear within the 
 overall federal top 9 categories, suggesting their hiring patterns are broadly representative of 
 federal demand. However, Army National Guard Units' top categories (largely logistics and equipment 
 maintenance) do not appear in the overall top 9, indicating this agency's hiring needs are more 
 specialized and agency-specific rather than reflective of federal hiring as a whole.
 
-![Top Categories in Demand Overall](screenshots/PowerBI/top_categories_in_demand_overall.PNG)
+---
