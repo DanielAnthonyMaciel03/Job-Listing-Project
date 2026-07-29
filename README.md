@@ -140,9 +140,9 @@ Clerical And Technician
 - United States Army Installation Management Command: Education And Training Technician, Recreation 
 Aid And Assistant, Cooking
 
-| Veterans Health Administration | Army National Guard Units | Army Installation Management Command |
-|---|---|---|
-| ![VHA Top Categories](screenshots/PowerBI/top_3_categories_1.PNG) | ![Army NG Top Categories](screenshots/PowerBI/top_3_categories_2.PNG) | ![Army IMC Top Categories](screenshots/PowerBI/top_3_categories_3.PNG) |
+![VHA Top Categories](screenshots/PowerBI/top_3_categories_1.PNG)
+![Army NG Top Categories](screenshots/PowerBI/top_3_categories_2.PNG)
+![Army IMC Top Categories](screenshots/PowerBI/top_3_categories_3.PNG)
 
 ## 3. Are these top career paths reflected in the dataset overall, or does each agency's hiring pattern 
 diverge from the broader trend?
