@@ -4,9 +4,7 @@ This project demonstrates an end-to-end data pipeline, built to analyze current 
 
 The pipeline extracts all available federal job postings, cleans and transforms the data, and loads it into a normalized PostgreSQL database built with a star schema. The entire pipeline is orchestrated end-to-end with Apache Airflow, running in Docker. It runs on a daily schedule (every morning at 8:00 AM PST), detects and loads only new listings (no duplicates on repeat runs), and handles real-world data engineering challenges, including API pagination, NULL/missing field handling, and reliable task orchestration with retry logic.
 
-**The key business question this pipeline is designed to answer is:** 
-
-This README is organized in two parts. The first half walks through my thought process behind the key decisions I made when constructing the pipeline, along with several implementations that reflect real-world data engineering problem-solving. The second half walks through the analytical work done to answer the business question above, using SQL views queried from PostgreSQL and visualized in Power BI.
+This README is organized in two parts. The first half walks through my thought process behind the key decisions I made when constructing the pipeline, along with several implementations that reflect real-world data engineering problem-solving. The second half walks through the analytical work and key insights found from the main analytical question proposed in part 2, using SQL views queried from PostgreSQL and visualized in Power BI.
 
 ---
 
@@ -113,7 +111,7 @@ real value to stakeholders. Specifically, I believe this dataset can help job
 seekers and career changers understand what types of roles government agencies 
 are currently hiring for.
 
-**The main question I analyzed:** "Which government agencies hire the most, what 
+**The central analytical question this project addresses is:** "Which government agencies hire the most, what 
 career paths do they mainly support, and is that concentration unique to them 
 or reflective of federal hiring overall?"
 
@@ -121,7 +119,7 @@ This analysis aims to give job seekers a clearer view of which agencies are hiri
 actively, what career paths those agencies primarily support, and whether that 
 pattern is agency-specific or representative of federal hiring more broadly.
 
-**Final Recommendation:** My final recommendation will answer which career fields/paths may benefit 
+I will also provide a final recommendation which will answer which career fields/paths may benefit 
 from pursuing government job opportunities, and which fields appear underserved federally and may be 
 better pursued in the private sector.
 
@@ -141,14 +139,26 @@ Guard Units, and United States Army Installation Management Command.
 ## 2. Within each of those top 3 agencies, what are their top 3 career paths/job categories?
 
 ![VHA Top Categories](screenshots/PowerBI/top_3_categories_1.PNG)
+
+- Veterans Health Administration: 
+    - Medical Officer 
+    - Nurse 
+    - Social Work
+
 ![Army NG Top Categories](screenshots/PowerBI/top_3_categories_2.PNG)
+
+- Army National Guard Units: 
+    - Transportation/Mobile Equipment Maintenance
+    - Aircraft Mechanic 
+    - Supply Clerical And Technician
+
+
 ![Army IMC Top Categories](screenshots/PowerBI/top_3_categories_3.PNG)
 
-- Veterans Health Administration: Medical Officer, Nurse, Social Work
-- Army National Guard Units: Transportation/Mobile Equipment Maintenance, Aircraft Mechanic, Supply 
-Clerical And Technician
-- United States Army Installation Management Command: Education And Training Technician, Recreation 
-Aid And Assistant, Cooking
+- United States Army Installation Management Command: 
+    - Education And Training Technician
+    - Recreation 
+    - Aid And Assistant, Cooking
 
 ---
 
@@ -163,3 +173,11 @@ maintenance) do not appear in the overall top 9, indicating this agency's hiring
 specialized and agency-specific rather than reflective of federal hiring as a whole.
 
 ---
+
+## Dashboard Overview
+
+![Full Dashboard](screenshots/PowerBI/entire_dashboard.PNG)
+
+---
+
+# Final Reccomendation 
