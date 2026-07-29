@@ -131,7 +131,7 @@ I chose to analyze the following sub-questions to allow me to provide a thorough
 - The top 3 agencies in federal government hiring are Veterans Health Administration, Army National 
 Guard Units, and United States Army Installation Management Command.
 
-![Top 3 Hiring Organizations](screenshots/PowerBI/top_hiring_organizations.png)
+![Top 3 Hiring Organizations](screenshots/PowerBI/top_hiring_organizations.PNG)
 
 ## 2. Within each of those top 3 agencies, what are their top 3 career paths/job categories?
 - Veterans Health Administration: Medical Officer, Nurse, Social Work
