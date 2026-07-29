@@ -12,6 +12,8 @@ This README is organized in two parts. The first half walks through my thought p
 
 # [Part 1]: Pipeline Construction
 
+---
+
 # Data pipeline architecture
 ![Pipeline Architecture](screenshots/techArchitecture.PNG)
 
@@ -100,8 +102,11 @@ This README is organized in two parts. The first half walks through my thought p
 - This project uses ETL rather than ELT. Modern data engineering practice often favors extracting data, loading it into a staging table first, and then transforming it using tools like dbt. For this project, I chose to demonstrate transforming the data before loading it, which is a simpler and more appropriate approach at this scale.
 - The pipeline currently has no automated unit tests. Validation relies on manually observing task failures and reviewing Airflow's logs.
 
+---
 
 # [Part 2]: Job Listing analysis
+
+---
 
 For this part of the project, I wanted to analyze something that would provide 
 real value to stakeholders. Specifically, I believe this dataset can help job 
@@ -125,6 +130,8 @@ I chose to analyze the following sub-questions to allow me to provide a thorough
 ## 1. What are the top 3 agencies currently hiring the most?
 - The top 3 agencies in federal government hiring are Veterans Health Administration, Army National 
 Guard Units, and United States Army Installation Management Command.
+
+![Top 3 Hiring Organizations](screenshots/PowerBI/top_hiring_organizations.png)
 
 ## 2. Within each of those top 3 agencies, what are their top 3 career paths/job categories?
 - Veterans Health Administration: Medical Officer, Nurse, Social Work
