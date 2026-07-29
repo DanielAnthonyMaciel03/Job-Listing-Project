@@ -1,12 +1,16 @@
 # Project Description
 
-This project is an automated ETL pipeline built around the [USAJOBS](https://developer.usajobs.gov) public REST API. It extracts all available federal job postings, cleans and transforms the data, and loads it into a normalized PostgreSQL database built with a star schema. The entire pipeline is orchestrated end-to-end with Apache Airflow, running in Docker.
+This project demonstrates an end-to-end data pipeline, built to analyze current federal job postings sourced from the [USAJOBS](https://developer.usajobs.gov) public REST API.
 
-The pipeline runs on a daily schedule (every morning at 8:00 AM PST), detects and loads only new listings (no duplicates on repeat runs). The pipeline handles real-world data engineering challenges, including API pagination, NULL/missing field handling, and reliable task orchestration with retry logic.
+The pipeline extracts all available federal job postings, cleans and transforms the data, and loads it into a normalized PostgreSQL database built with a star schema. The entire pipeline is orchestrated end-to-end with Apache Airflow, running in Docker. It runs on a daily schedule (every morning at 8:00 AM PST), detects and loads only new listings (no duplicates on repeat runs), and handles real-world data engineering challenges, including API pagination, NULL/missing field handling, and reliable task orchestration with retry logic.
 
-This README walks through my thought process behind the key decisions I made throughout this project, along with several implementations that reflect real-world data engineering problem-solving.
+**The key business question this pipeline is designed to answer is:** 
+
+This README is organized in two parts. The first half walks through my thought process behind the key decisions I made when constructing the pipeline, along with several implementations that reflect real-world data engineering problem-solving. The second half walks through the analytical work done to answer the business question above, using SQL views queried from PostgreSQL and visualized in Power BI.
 
 ---
+
+# [Part 1]: Pipeline Construction
 
 # Data pipeline architecture
 ![Pipeline Architecture](screenshots/techArchitecture.PNG)
@@ -95,3 +99,46 @@ This README walks through my thought process behind the key decisions I made thr
 - The pipeline can only run automatically (every day at 8:00 AM PST) if my local machine and Docker are left running, or if the pipeline is deployed to a cloud service provider for always-on availability.
 - This project uses ETL rather than ELT. Modern data engineering practice often favors extracting data, loading it into a staging table first, and then transforming it using tools like dbt. For this project, I chose to demonstrate transforming the data before loading it, which is a simpler and more appropriate approach at this scale.
 - The pipeline currently has no automated unit tests. Validation relies on manually observing task failures and reviewing Airflow's logs.
+
+
+# [Part 2]: Job Listing analysis
+
+For this part of the project, I wanted to analyze something that would provide 
+real value to stakeholders. Specifically, I believe this dataset can help job 
+seekers and career changers understand what types of roles government agencies 
+are currently hiring for.
+
+**The main question I analyzed:** "Which government agencies hire the most, what 
+career paths do they mainly support, and is that concentration unique to them 
+or reflective of federal hiring overall?"
+
+This analysis aims to give job seekers a clearer view of which agencies are hiring most 
+actively, what career paths those agencies primarily support, and whether that 
+pattern is agency-specific or representative of federal hiring more broadly.
+
+**Final Recommendation:** My final recommendation will answer which career fields/paths may benefit 
+from pursuing government job opportunities, and which fields appear underserved federally and may be 
+better pursued in the private sector.
+
+I chose to analyze the following sub-questions to allow me to provide a thorough recommendation:
+
+## 1. What are the top 3 agencies currently hiring the most?
+- The top 3 agencies in federal government hiring are Veterans Health Administration, Army National 
+Guard Units, and United States Army Installation Management Command.
+
+## 2. Within each of those top 3 agencies, what are their top 3 career paths/job categories?
+- Veterans Health Administration: Medical Officer, Nurse, Social Work
+- Army National Guard Units: Transportation/Mobile Equipment Maintenance, Aircraft Mechanic, Supply 
+Clerical And Technician
+- United States Army Installation Management Command: Education And Training Technician, Recreation 
+Aid And Assistant, Cooking
+
+## 3. Are these top career paths reflected in the dataset overall, or does each agency's hiring pattern 
+diverge from the broader trend?
+- Partially. VHA and Army Installation Management Command's top categories all appear within the 
+overall federal top 9 categories, suggesting their hiring patterns are broadly representative of 
+federal demand. However, Army National Guard Units' top categories (largely logistics and equipment 
+maintenance) do not appear in the overall top 9, indicating this agency's hiring needs are more 
+specialized and agency-specific rather than reflective of federal hiring as a whole.
+
+
