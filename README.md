@@ -131,34 +131,36 @@ I chose to analyze the following sub-questions to allow me to provide a thorough
 
 ![Top 3 Hiring Organizations](screenshots/PowerBI/top_hiring_organizations.PNG)
 
-- The top 3 agencies in federal government hiring are Veterans Health Administration, Army National 
-Guard Units, and United States Army Installation Management Command.
+- The top 3 agencies in federal government hiring are:
+    - Veterans Health Administration (VHA), with 30% of entire listings on USAJOBS
+    - Army National Guard Units (ANGU), with 4.2% of entire listings on USAJOBS
+    - United States Army Installation Management Command (USAIMC), with 3.9% of entire listings on USAJOBS
 
 ---
 
 ## 2. Within each of those top 3 agencies, what are their top 3 career paths/job categories?
 
-![VHA Top Categories](screenshots/PowerBI/top_3_categories_1.PNG)
+![VHA Top Categories](screenshots/PowerBI/top_3_categories_3.PNG)
 
-- Veterans Health Administration: 
-    - Medical Officer 
-    - Nurse 
-    - Social Work
+- For Veterans Health Administration, the top 3 categories they are currently hiring for are: 
+    - "Medical Officer" is number 1 with 1,048 current listings
+    - "Nurse" is number 2 with 463
+    - "Social Work" is number 3 with 230
 
-![Army NG Top Categories](screenshots/PowerBI/top_3_categories_2.PNG)
+![ANGU Top Categories](screenshots/PowerBI/top_3_categories_1.PNG)
 
-- Army National Guard Units: 
-    - Transportation/Mobile Equipment Maintenance
-    - Aircraft Mechanic 
-    - Supply Clerical And Technician
+- For Army National Guard Units, the top 3 categories they are currently hiring for are: 
+    - "Transportation/Mobile Equipment Maintenance" is number 1 with 130 current listings
+    - "Aircraft Mechanic" is number 2 with 39 current listings
+    - "Supply Clerical And Technician" is number 3 with 29 current listings
 
 
-![Army IMC Top Categories](screenshots/PowerBI/top_3_categories_3.PNG)
+![AIMC Top Categories](screenshots/PowerBI/top_3_categories_2.PNG)
 
-- United States Army Installation Management Command: 
-    - Education And Training Technician
-    - Recreation 
-    - Aid And Assistant, Cooking
+- For United States Army Installation Management Command, the top 3 categories they are currently hiring for are: 
+    - "Education And Training Technician" is number 1 with 89 current listings
+    - "Recreation" is number 2 with 81 current listings
+    - "Aid And Assistant, Cooking" is number 3 with 28 current listings
 
 ---
 
