@@ -49,7 +49,7 @@ This README is organized in two parts. The first half walks through my thought p
 
 - [`airflow DAG code`](airflow%20DAG%20code) — This folder contains the single DAG file used by Airflow to orchestrate the entire pipeline. The DAG file relies on `extract.py`, `transform.py`, and `load.py` (which are located [`pre-airflow pipeline`](pre-airflow%20pipeline)) in being present in the same directory for Airflow to run correctly.
 - [`pre-airflow pipeline`](pre-airflow%20pipeline) — The contents in this folder were used to test and confirm the pipeline worked via manual, single-run execution before Airflow was introduced. Once confirmed working, only `extract.py`, `transform.py`, and `load.py` needed to be referenced by the DAG file.
-- [`sql`](sql) — Contains the SQL used to create the tables.
+- [`sql`](sql) — Contains all the SQL used to complete this project. This includes table creation, queries for analysis, and view creation.
 
 ---
 
@@ -144,8 +144,8 @@ I chose to analyze the following sub-questions to allow me to provide a thorough
 
 - For Veterans Health Administration, the top 3 categories they are currently hiring for are: 
     - "Medical Officer" is number 1 with 1,048 current listings
-    - "Nurse" is number 2 with 463
-    - "Social Work" is number 3 with 230
+    - "Nurse" is number 2 with 463 current listings
+    - "Social Work" is number 3 with 230 current listings
 
 ![ANGU Top Categories](screenshots/PowerBI/top_3_categories_1.PNG)
 
@@ -159,8 +159,8 @@ I chose to analyze the following sub-questions to allow me to provide a thorough
 
 - For United States Army Installation Management Command, the top 3 categories they are currently hiring for are: 
     - "Education And Training Technician" is number 1 with 89 current listings
-    - "Recreation" is number 2 with 81 current listings
-    - "Aid And Assistant, Cooking" is number 3 with 28 current listings
+    - "Recreation Aid And Assistant" is number 2 with 81 current listings
+    - "Cooking" is number 3 with 28 current listings
 
 ---
 
@@ -182,4 +182,21 @@ specialized and agency-specific rather than reflective of federal hiring as a wh
 
 ---
 
-# Final Reccomendation 
+# Final Recommendation
+
+**Healthcare fields have the clearest path into federal employment.** Veterans Health Administration 
+alone accounts for nearly a third of all federal listings, driven by clinical roles such as Medical Officer, 
+Nurse, and Social Work, which are also the top categories nationally.
+
+**High-volume agencies don't always reflect national trends.** Army National Guard Units is the 
+second-largest hirer, but its top categories (logistics, equipment maintenance) don't appear in the 
+federal-wide top 9. Job seekers in these fields should target specific agencies rather than assume 
+broad federal demand.
+
+**Fields like IT and general administration exist federally, but at a much smaller scale.** 
+Information Technology Management makes up just 2.5% of listings, compared to Medical Officer's 9.1%. 
+Job seekers in these fields may find better volume and competition in the private sector.
+
+**Bottom line:** federal hiring is concentrated in healthcare and military-support roles. Job seekers 
+in those fields have the most opportunity with federal jobs while others should treat federal roles as one option among 
+several, not the primary path.
